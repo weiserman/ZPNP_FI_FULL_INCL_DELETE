@@ -1,0 +1,2 @@
+# ZPNP_FI_FULL_INCL_DELETE
+Full pull
