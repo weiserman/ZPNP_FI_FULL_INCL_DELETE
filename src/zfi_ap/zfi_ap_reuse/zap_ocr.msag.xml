@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZAP_OCR</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>OCR Message Class</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP_OCR</ARBGB>
+     <MSGNR>200</MSGNR>
+     <TEXT>&amp;1 &amp;2 &amp;3 &amp;4</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP_OCR</ARBGB>
+     <MSGNR>201</MSGNR>
+     <TEXT>Comm Header Entity Not Found, &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP_OCR</ARBGB>
+     <MSGNR>202</MSGNR>
+     <TEXT>No Invoice Attachment Found.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP_OCR</ARBGB>
+     <MSGNR>203</MSGNR>
+     <TEXT>Failure To Create Message In JSON Format.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP_OCR</ARBGB>
+     <MSGNR>204</MSGNR>
+     <TEXT>Failed To Send OCR Request With HTTP Code &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP_OCR</ARBGB>
+     <MSGNR>205</MSGNR>
+     <TEXT>Error Creating OCR: &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP_OCR</ARBGB>
+     <MSGNR>206</MSGNR>
+     <TEXT>Error Sending OCR Request: &amp;1.</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

@@ -1,0 +1,93 @@
+managed implementation in class zbp_ap_r_appr unique;
+strict ( 2 );
+
+define behavior for ZAP_R_APPR //alias <alias_name>
+persistent table zap_a_appr
+lock master
+authorization master ( instance )
+with additional save
+etag master LastChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+
+  association _Logs { create; }
+
+  //Actions
+  action SharepointApprCreateResp parameter zap_d_sharep_appr_create_resp result [1] zap_d_sharep_appr_create_resp;
+
+  //Numbering
+  field ( numbering : managed, readonly ) ApprovalUuid;
+
+  //Read Only
+  field ( readonly ) ExternalId, LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt;
+
+  //Determinations
+  determination determine_onsave_externalid on save { create; field ApprovalUuid; } // Generate ExternalId on create, do once
+  determination determine_onsave_validate on save { create; } // General validation on create, avoided validation methods as failures should not block save
+
+  //Mapping
+  mapping for zap_a_appr corresponding
+    {
+      ApprovalUuid             = approval_uuid;
+      ParentUuid               = parent_uuid;
+      ExternalId               = external_id;
+      Status                   = status;
+      SharepointApprovalStatus = sharepoint_approval_status;
+      SharepointApprovalId     = sharepoint_approval_id;
+      SharepointApproverName   = sharepoint_approver_name;
+      SharepointApproverEmail  = sharepoint_approver_email;
+      ApprLogId                = appr_log_id;
+      LocalCreatedBy           = local_created_by;
+      LocalCreatedAt           = local_created_at;
+      LocalLastChangedBy       = local_last_changed_by;
+      LocalLastChangedAt       = local_last_changed_at;
+      LastChangedAt            = last_changed_at;
+    }
+
+}
+
+
+define behavior for ZAP_I_APPR_LOG //alias <alias_name>
+persistent table zap_a_appr_log
+lock dependent by _Appr
+authorization dependent by _Appr
+etag master LastChangedAt
+{
+  update;
+  delete;
+
+  association _Appr;
+
+  //Numbering
+  field ( numbering : managed, readonly ) LogUuid;
+
+  //Read Only
+  field ( readonly ) ApprovalUuid, LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt;
+
+  //Determinations
+  determination determine_onsave_status on save { create; }
+
+  //Mapping
+  mapping for zap_a_appr_log corresponding
+    {
+      LogUuid            = log_uuid;
+      ApprovalUuid       = approval_uuid;
+      LogId              = log_id;
+      MessageClass       = message_class;
+      MessageType        = message_type;
+      MessageNumber      = message_number;
+      MessageVar1        = message_var1;
+      MessageVar2        = message_var2;
+      MessageVar3        = message_var3;
+      MessageVar4        = message_var4;
+      DetailedMessage    = detailed_message;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+
+}

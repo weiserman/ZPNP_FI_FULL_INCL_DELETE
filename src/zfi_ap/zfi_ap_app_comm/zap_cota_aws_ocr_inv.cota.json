@@ -1,0 +1,17 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Communication Target: OCR Invoice Via AWS",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "configuration": {
+    "communicationTargetClass": "ZAP_COTA_AWS_OCR_INV",
+    "allowMultipleDestinations": true
+  },
+  "rfcSettings": {},
+  "apcSettings": {
+    "transportLayer": "U",
+    "protocol": "U"
+  }
+}

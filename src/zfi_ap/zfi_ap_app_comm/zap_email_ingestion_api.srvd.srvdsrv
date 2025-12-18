@@ -1,0 +1,6 @@
+@EndUserText.label: 'Email Ingestion Service Definition'
+define service ZAP_EMAIL_INGESTION_API {
+  expose ZAP_C_EMAIL_API        as Email;
+  expose ZAP_C_EMAIL_ATTACH_API as Attachments;
+  expose ZAP_C_EMAIL_LOG_API    as Logs;
+}

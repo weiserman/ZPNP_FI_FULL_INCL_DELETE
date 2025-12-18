@@ -1,0 +1,40 @@
+managed implementation in class zbp_ap_r_bgpfl unique;
+strict ( 2 );
+
+define behavior for ZAP_R_BGPFL //alias <alias_name>
+persistent table zap_a_bgpfl
+lock master
+authorization master ( none )
+//etag master <field_name>
+{
+  create ( authorization : none );
+  update;
+  delete;
+
+  //Numbering
+  field ( numbering : managed, readonly ) LogUuid;
+
+  //Mandatory
+
+  //Read Only
+
+  //Determinations
+
+  //Validations
+
+  //Events
+
+  //Mapping
+  mapping for zap_a_bgpfl corresponding
+    {
+      LogUuid            = log_uuid;
+      CommUuid           = comm_uuid;
+      CurrentStep        = current_step;
+      CurrentStepStatus  = current_step_status;
+      OcrUuid            = ocr_uuid;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}

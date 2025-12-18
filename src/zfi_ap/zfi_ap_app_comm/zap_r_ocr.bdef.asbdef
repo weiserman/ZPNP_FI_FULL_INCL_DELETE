@@ -1,0 +1,136 @@
+managed implementation in class zbp_ap_r_ocr unique;
+strict ( 2 );
+
+define behavior for ZAP_R_OCR //alias <alias_name>
+persistent table zap_a_ocr_head
+lock master
+authorization master ( instance )
+with additional save
+etag master LastChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+
+  association _Items { create; }
+  association _Logs { create; }
+
+  //Numbering
+  field ( numbering : managed, readonly ) OcrUuid;
+
+  //Mandatory
+  field ( mandatory : create ) ParentUuid;
+
+  //Read Only
+  field ( readonly ) LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt;
+
+  //Mapping
+  mapping for zap_a_ocr_head corresponding
+    {
+      OcrUuid                  = ocr_uuid;
+      ParentUuid               = parent_uuid;
+      Status                   = status;
+      LogId                    = log_id;
+      IntegrationCorrelationId = integration_correlation_id;
+      InvoiceReference         = invoice_reference;
+      InvoiceDate              = invoice_date;
+      VendorName               = vendor_name;
+      VendorVatNumber          = vendor_vat_number;
+      PnpVatNumber             = pnp_vat_number;
+      TotalVatInclusive        = total_vat_inclusive;
+      VatValue                 = vat_value;
+      PurchaseOrderNumber      = purchase_order_number;
+      AwsExecutionName         = aws_execution_name;
+      AwsS3JsonBucket          = aws_s3_json_bucket;
+      AwsS3JsonObjectKey       = aws_s3_json_object_key;
+      AwsS3RawLlmBucket        = aws_s3_raw_llm_bucket;
+      AwsS3RawLlmObjectKey     = aws_s3_raw_llm_object_key;
+      LocalCreatedBy           = local_created_by;
+      LocalCreatedAt           = local_created_at;
+      LocalLastChangedBy       = local_last_changed_by;
+      LocalLastChangedAt       = local_last_changed_at;
+      LastChangedAt            = last_changed_at;
+    }
+}
+
+
+define behavior for ZAP_I_OCR_ITEM //alias <alias_name>
+persistent table zap_a_ocr_item
+lock dependent by _Ocr
+authorization dependent by _Ocr
+etag master LastChangedAt
+{
+
+  update;
+  delete;
+  association _Ocr;
+
+  //Numbering
+  field ( numbering : managed, readonly ) ItemUuid;
+
+  //Mandatory
+
+  //Read Only
+  field ( readonly ) OcrUuid;
+
+  field ( readonly ) LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt;
+
+  //Mapping
+  mapping for zap_a_ocr_item corresponding
+    {
+      ItemUuid           = item_uuid;
+      OcrUuid            = ocr_uuid;
+      ItemDescription    = item_description;
+      ItemQuantity       = item_quantity;
+      ItemNettValue      = item_nett_value;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+}
+
+
+define behavior for ZAP_I_OCR_LOG //alias <alias_name>
+persistent table zap_a_ocr_log
+lock dependent by _Ocr
+authorization dependent by _Ocr
+etag master LastChangedAt
+{
+  update;
+  delete;
+
+  association _Ocr;
+
+  //Numbering
+  field ( numbering : managed, readonly ) LogUuid;
+
+  //Read Only
+  field ( readonly : update ) OcrUuid;
+  field ( readonly ) LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt;
+
+  //Determinations
+  determination determine_onsave_status on save { create; }
+
+  //Mapping
+  mapping for zap_a_ocr_log corresponding
+    {
+      LogUuid            = log_uuid;
+      OcrUuid            = ocr_uuid;
+      LogId              = log_id;
+      MessageClass       = message_class;
+      MessageType        = message_type;
+      MessageNumber      = message_number;
+      MessageVar1        = message_var1;
+      MessageVar2        = message_var2;
+      MessageVar3        = message_var3;
+      MessageVar4        = message_var4;
+      DetailedMessage    = detailed_message;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+}

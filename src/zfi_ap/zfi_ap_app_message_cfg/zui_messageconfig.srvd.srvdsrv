@@ -1,0 +1,5 @@
+@ObjectModel.leadingEntity.name: 'ZI_MessageConfig_S'
+define service ZUI_MESSAGECONFIG {
+  expose ZI_MESSAGECONFIG_S as MessageConfigAll;
+  expose ZI_MESSAGECONFIG as MessageConfig;
+}

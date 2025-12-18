@@ -1,0 +1,28 @@
+projection;
+strict ( 2 );
+
+define behavior for ZAP_C_OCR_API alias Ocr
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _Items { create; }
+  use association _Logs { create; }
+}
+
+define behavior for ZAP_C_OCR_ITEM_API alias Items
+{
+  use update;
+  use delete;
+
+  use association _Ocr;
+}
+
+define behavior for ZAP_C_OCR_LOG_API alias Logs
+{
+  use update;
+  use delete;
+
+  use association _Ocr;
+}

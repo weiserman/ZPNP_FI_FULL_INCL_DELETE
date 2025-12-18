@@ -1,0 +1,171 @@
+managed implementation in class zbp_ap_r_val unique;
+strict ( 2 );
+with draft;
+define behavior for ZAP_R_VAL //alias <alias_name>
+persistent table zap_a_val_head
+draft table zap_d_val_head
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( instance )
+with additional save
+{
+  create (  authorization : global );
+  update ( features : instance );
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  //action ( features : instance ) %action-Edit;
+  association _Items { create; with draft; }
+  association _Logs { create; with draft; }
+
+  //Actions
+  //  action check parameter  $self;
+  action ( features : instance ) validateData result [1] $self;
+
+  //Numbering
+  field ( numbering : managed, readonly ) ValUuid;
+
+  //Mandatory
+  field ( mandatory : create ) ParentUuid;
+
+  //Read Only
+  field ( readonly ) LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt, PoCcode, VendorNumber, CountryCode, PoType, ValLogId;
+
+  //Determinations
+  //  determination do_createdetermination on modify { create; }
+  //  determination do_updatedetermination on modify {field InvoiceDate, InvoiceReference, PnpVatNumber, PurchaseOrderNumber, VendorName, VendorVatNumber, VatValue;  }
+  determination do_savedetermination on save { create; field InvoiceDate, InvoiceReference, PnpVatNumber, PurchaseOrderNumber, VendorName, VendorVatNumber, VatValue, AcknowledgeWarning; }
+
+  //Validations
+  //    validation do_validation on save { create; update;}
+  //Events
+
+  //Mapping
+  mapping for zap_a_val_head corresponding
+    {
+      ValUuid             = val_uuid;
+      ParentUuid          = parent_uuid;
+      Status              = status;
+      AcknowledgeWarning  = acknowledge_warning;
+      ValLogId            = val_log_id;
+      InvoiceReference    = invoice_reference;
+      InvoiceDate         = invoice_date;
+      VendorName          = vendor_name;
+      VendorVatNumber     = vendor_vat_number;
+      PnpVatNumber        = pnp_vat_number;
+      TotalVatInclusive   = total_vat_inclusive;
+      VatValue            = vat_value;
+      PurchaseOrderNumber = purchase_order_number;
+      VendorNumber        = vendor_number;
+      PoCcode             = po_ccode;
+      PoType              = po_type;
+      CountryCode         = country_code;
+      LocalCreatedBy      = local_created_by;
+      LocalCreatedAt      = local_created_at;
+      LocalLastChangedBy  = local_last_changed_by;
+      LocalLastChangedAt  = local_last_changed_at;
+      LastChangedAt       = last_changed_at;
+    }
+}
+
+define behavior for ZAP_I_VAL_ITEM //alias <alias_name>
+persistent table zap_a_val_item
+draft table zap_d_val_item
+with additional save
+//etag master LocalLastChangedAt
+//lock master total etag LastChangedAt
+
+lock dependent by _Val
+authorization dependent by _Val
+//etag master <field_name>
+{
+  update;
+  delete;
+
+  association _Val { with draft; }
+
+  //Numbering
+  field ( numbering : managed, readonly ) ItemUuid;
+
+
+  //Mandatory
+
+  //Read Only
+  field ( readonly ) ValUuid, LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt;
+
+  //Determinations
+  //    determination do_item_determination on save { create; update;}
+
+  //Validations
+  //    validation do_item_validation on save { create; update;}
+  //Events
+
+  //Events
+
+  //Mapping
+  mapping for zap_a_val_item corresponding
+    {
+      ItemUuid           = item_uuid;
+      ValUuid            = val_uuid;
+      ItemDescription    = item_description;
+      ItemQuantity       = item_quantity;
+      ItemNettValue      = item_nett_value;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+}
+define behavior for ZAP_I_VAL_LOG //alias <alias_name>
+persistent table zap_a_val_log
+draft table zap_d_val_log
+etag master LocalLastChangedAt
+lock dependent by _Val
+authorization dependent by _Val
+
+//etag master <field_name>
+{
+  update;
+  delete;
+
+  //Numbering
+  field ( numbering : managed, readonly ) LogUuid;
+
+  association _Val { with draft; }
+  //Read Only
+  field ( readonly ) ValUuid, LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt;
+
+  //Validations
+
+  //Determinations
+  determination determine_onsave_status on save { create; }
+
+  //Events
+
+  //Mapping
+  mapping for zap_a_val_log corresponding
+    {
+      LogUuid            = log_uuid;
+      ValUuid            = val_uuid;
+      LogId              = log_id;
+      MessageClass       = message_class;
+      MessageType        = message_type;
+      MessageNumber      = message_number;
+      MessageVar1        = message_var1;
+      MessageVar2        = message_var2;
+      MessageVar3        = message_var3;
+      MessageVar4        = message_var4;
+      DetailedMessage    = detailed_message;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+}

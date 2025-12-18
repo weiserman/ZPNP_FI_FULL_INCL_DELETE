@@ -1,0 +1,19 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "AP RFC Calls to ECC",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "configuration": {
+    "communicationType": "rfc",
+    "communicationTargetClass": "ZAP_COTA_RFC_ECC",
+    "allowMultipleDestinations": true
+  },
+  "rfcSettings": {
+    "enforceSapGuiSupport": true
+  },
+  "apcSettings": {
+    "protocol": "mqtt"
+  }
+}

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZAP_RFC</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>RFC Commication Messages</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP_RFC</ARBGB>
+     <MSGNR>091</MSGNR>
+     <TEXT>ECC SYSTEM_FAILURE - &amp;1&amp;2&amp;3&amp;4</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP_RFC</ARBGB>
+     <MSGNR>092</MSGNR>
+     <TEXT>ECC COMM_FAILURE - &amp;1&amp;2&amp;3&amp;4</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP_RFC</ARBGB>
+     <MSGNR>093</MSGNR>
+     <TEXT>ECC OTHER FAILUE - &amp;1&amp;2&amp;3&amp;4</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP_RFC</ARBGB>
+     <MSGNR>094</MSGNR>
+     <TEXT>ECC FAILUE -  Check For Short Dumps</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP_RFC</ARBGB>
+     <MSGNR>095</MSGNR>
+     <TEXT>DESTINATION ERROR - &amp;1&amp;2&amp;3&amp;4</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

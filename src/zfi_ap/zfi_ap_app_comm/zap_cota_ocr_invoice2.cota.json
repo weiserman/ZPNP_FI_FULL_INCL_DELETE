@@ -1,0 +1,17 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "test",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "configuration": {
+    "communicationTargetClass": "ZAP_COTA_OCR_INVOICE2",
+    "allowMultipleDestinations": true
+  },
+  "rfcSettings": {},
+  "apcSettings": {
+    "transportLayer": "U",
+    "protocol": "U"
+  }
+}

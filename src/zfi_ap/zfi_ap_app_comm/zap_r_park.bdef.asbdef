@@ -1,0 +1,92 @@
+managed implementation in class zbp_ap_r_park unique;
+strict ( 2 );
+
+define behavior for ZAP_R_PARK //alias <alias_name>
+persistent table zap_a_park_head
+lock master
+with additional save
+authorization master ( instance )
+etag master LocalLastChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+
+  association _Logs { create; }
+
+  //Numbering
+  field ( numbering : managed, readonly ) ParkUuid;
+
+  //Read Only
+  field ( readonly ) LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt;
+
+  //Determinations
+
+  //Validations
+
+  //Events
+
+  //Mapping
+  mapping for zap_a_park_head corresponding
+       {
+      parkUuid                  = Park_uuid;
+      ParentUuid               = parent_uuid;
+      Status                   = status;
+      ParkLogId                = park_log_id;
+      ParkDoc                  = Park_Doc;
+      ParkDocYear              = Park_Doc_Year;
+      ParkDocStatus            = Park_Doc_Status;
+      LastChangedAt            = last_changed_at;
+      LocalCreatedBy           = local_created_by;
+      LocalCreatedAt           = local_created_at;
+      LocalLastChangedBy       = local_last_changed_by;
+      LocalLastChangedAt       = local_last_changed_at;
+    }
+}
+
+define behavior for ZAP_I_PARK_LOG //alias <alias_name>
+persistent table zap_a_park_log
+lock dependent by _Park
+authorization dependent by _Park
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+
+  association _Park;
+
+  //Numbering
+  field ( numbering : managed, readonly ) LogUuid;
+
+    //Read Only
+  field ( readonly : update ) ParkUuid;
+  field ( readonly ) LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt;
+
+  //Determinations
+  determination determine_onsave_status on save { create; }
+
+  //Validations
+
+  //Events
+
+  //Mapping
+  mapping for zap_a_park_log corresponding
+    {
+      LogUuid            = log_uuid;
+      ParkUuid            = park_uuid;
+      LogId              = log_id;
+      MessageClass       = message_class;
+      MessageType        = message_type;
+      MessageNumber      = message_number;
+      MessageVar1        = message_var1;
+      MessageVar2        = message_var2;
+      MessageVar3        = message_var3;
+      MessageVar4        = message_var4;
+      DetailedMessage    = detailed_message;
+      LastChangedAt      = last_changed_at;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}

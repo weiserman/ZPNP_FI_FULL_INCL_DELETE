@@ -1,0 +1,6 @@
+abstract;
+strict ( 2 );
+
+define behavior for ZAP_D_SHAREP_APPR_CREATE_RESP //alias <alias_name>
+{
+}

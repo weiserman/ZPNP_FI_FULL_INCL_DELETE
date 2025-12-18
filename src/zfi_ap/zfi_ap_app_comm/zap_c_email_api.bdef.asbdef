@@ -1,0 +1,28 @@
+projection;
+strict ( 2 );
+
+define behavior for ZAP_C_EMAIL_API alias Email
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _Attachments { create; }
+  use association _Logs { create; }
+}
+
+define behavior for ZAP_C_EMAIL_ATTACH_API alias Attachments
+{
+  use update;
+  use delete;
+
+  use association _Comm;
+}
+
+define behavior for ZAP_C_EMAIL_LOG_API alias Logs
+{
+  use update;
+  use delete;
+
+  use association _Comm;
+}

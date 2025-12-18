@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_SCO3" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <SCO3>
+    <OBS_ID>ZAP_TEST_COTA</OBS_ID>
+    <OBS_TYPE>COTA</OBS_TYPE>
+    <COTA_ID>ZAP_COTA_OCR_INVOICE2</COTA_ID>
+    <ABAP_LANGUAGE_VERSION>5</ABAP_LANGUAGE_VERSION>
+    <NAME>ZAP_TEST_COTA</NAME>
+    <TYPE>SCO3</TYPE>
+    <DESCRIPTION>test</DESCRIPTION>
+    <ABAP_LANGU_VERSION>5</ABAP_LANGU_VERSION>
+    <COTA_COM_TYPE>H</COTA_COM_TYPE>
+    <COTA_COM_TYPE_TXT>HTTP Service</COTA_COM_TYPE_TXT>
+   </SCO3>
+  </asx:values>
+ </asx:abap>
+</abapGit>

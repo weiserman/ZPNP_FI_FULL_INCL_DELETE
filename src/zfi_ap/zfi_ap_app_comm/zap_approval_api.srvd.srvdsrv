@@ -1,0 +1,5 @@
+@EndUserText.label: 'Approvals API Service Defination'
+define service ZAP_APPROVAL_API {
+  expose ZAP_C_APPR_API     as Appr;
+  expose ZAP_C_APPR_LOG_API as Logs;
+}

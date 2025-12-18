@@ -1,0 +1,182 @@
+managed implementation in class zbp_ap_r_comm unique;
+strict ( 2 );
+with draft;
+define behavior for ZAP_R_COMM //alias <alias_name>
+persistent table zap_a_comm
+draft table zap_d_comm
+etag master LastChangedAt
+lock master total etag LastChangedAt
+authorization master ( instance )
+with additional save
+{
+  create ( authorization : global );
+  update;
+  delete;
+
+  association _Attachments { create; with draft; }
+  association _Logs { create; with draft; }
+
+  //Actions
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  action RejectionPopup parameter zap_d_popup_rejection; // Custom action to trigger popup for rejection reason
+
+  //Side Effects
+  side effects
+  {
+    action RejectionPopup affects $self;
+  }
+
+  //Numbering
+  field ( numbering : managed, readonly ) CommUuid;
+
+  //Mandatory
+  field ( mandatory : create ) Channel, IntegrationCorrelationId;
+
+  //Read Only
+  field ( readonly ) ExternalId, LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt;
+
+  //Determinations
+  determination determine_onsave_externalid on save { create; field CommUuid; } // Generate ExternalId on create, do once
+  determination determine_onmodify_vendornum on modify { create; field CommUuid; } // Set VendorNumber on modify, do once
+  determination determine_onsave_validate on save { create; } // General validation on create, avoided validation methods as failures should not block save
+
+  //Validations
+
+  //Events
+  event respond_to_vendor parameter zap_d_event_vendor_response; // Custom event to trigger email response to vendor
+
+  //Mapping
+  mapping for zap_a_comm corresponding
+    {
+      CommUuid                 = comm_uuid;
+      ExternalId               = external_id;
+      Channel                  = channel;
+      ChannelType              = channel_type;
+      CountryCode              = country_code;
+      IntegrationCorrelationId = integration_correlation_id;
+      CommStatus               = comm_status;
+      CommLogId                = comm_log_id;
+      CurrentStep              = current_step;
+      CurrentStepStatus        = current_step_status;
+      CurrentStepProccessedAt  = current_step_proccessed_at;
+      EmailId                  = email_id;
+      EmailSenderAddr          = email_sender_addr;
+      EmailSubject             = email_subject;
+      EmailSentAt              = email_sent_at;
+      EmailReceivedAt          = email_received_at;
+      VendorNumber             = vendor_number;
+      InvoiceReference         = invoice_reference;
+      LocalCreatedBy           = local_created_by;
+      LocalCreatedAt           = local_created_at;
+      LocalLastChangedBy       = local_last_changed_by;
+      LocalLastChangedAt       = local_last_changed_at;
+      LastChangedAt            = last_changed_at;
+    }
+}
+
+
+define behavior for ZAP_I_ATTACH //alias <alias_name>
+persistent table zap_a_attach
+draft table zap_d_attach
+lock dependent by _Comm
+authorization dependent by _Comm
+etag master LastChangedAt
+{
+  update;
+  delete;
+
+  association _Comm { with draft; }
+
+  //Numbering
+  field ( numbering : managed, readonly ) AttachmentUuid;
+
+  //Mandatory
+
+  //Read Only
+  field ( readonly ) ParentUuid, LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt;
+
+  //Determinations
+  determination determine_onsave_validate on save { create; } // General validation on create, avoided validation methods as failures should not block save
+
+  //Validations
+
+  //Events
+
+  //Mapping
+  mapping for zap_a_attach corresponding
+    {
+      AttachmentUuid           = attachment_uuid;
+      ParentUuid               = parent_uuid;
+      AttachmentId             = attachment_id;
+      AttachmentType           = attachment_type;
+      FileName                 = file_name;
+      FileExtension            = file_extension;
+      FileSize                 = file_size;
+      AwsS3FileArn             = aws_s3_file_arn;
+      AwsS3Bucket              = aws_s3_bucket;
+      AwsS3ObjectKey           = aws_s3_object_key;
+      AwsS3SignedUrl           = aws_s3_signed_url;
+      AwsS3SignedUrlExpiryDate = aws_s3_signed_url_expiry_date;
+      LocalCreatedBy           = local_created_by;
+      LocalCreatedAt           = local_created_at;
+      LocalLastChangedBy       = local_last_changed_by;
+      LocalLastChangedAt       = local_last_changed_at;
+      LastChangedAt            = last_changed_at;
+    }
+}
+
+
+define behavior for ZAP_I_COMM_LOG //alias <alias_name>
+persistent table zap_a_comm_log
+draft table zap_d_comm_log
+lock dependent by _Comm
+authorization dependent by _Comm
+etag master LastChangedAt
+{
+  update;
+  delete;
+
+  association _Comm { with draft; }
+
+  //Numbering
+  field ( numbering : managed, readonly ) LogUuid;
+
+  //Mandatory
+  field ( mandatory : create ) MessageType, MessageNumber, DetailedMessage;
+
+  //Read Only
+  field ( readonly ) CommUuid, LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt, LastChangedAt;
+
+  //Determinations
+  determination determine_onsave_status on save { create; }
+
+  //Validations
+
+  //Events
+
+  //Mapping
+  mapping for zap_a_comm_log corresponding
+    {
+      LogUuid            = log_uuid;
+      CommUuid           = comm_uuid;
+      LogId              = log_id;
+      MessageClass       = message_class;
+      MessageType        = message_type;
+      MessageNumber      = message_number;
+      MessageVar1        = message_var1;
+      MessageVar2        = message_var2;
+      MessageVar3        = message_var3;
+      MessageVar4        = message_var4;
+      DetailedMessage    = detailed_message;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+}
