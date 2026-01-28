@@ -3,16 +3,16 @@
 @Metadata.ignorePropagatedAnnotations: true
 define root view entity ZAP_R_OCR
   as select from ZAP_I_OCR_HEAD
-  composition [0..*] of ZAP_I_OCR_ITEM  as _Items
-  composition [0..*] of ZAP_I_OCR_LOG   as _Logs
+  composition [0..*] of ZAP_I_OCR_ITEM as _Items
+  composition [0..*] of ZAP_I_OCR_LOG  as _Logs
 
-  association [1..1] to ZAP_I_STATUS_VH as _StatusVH    on $projection.Status = _StatusVH.Status
+  association [1..1] to ZAP_C_COMM_UI  as _Comm            on $projection.ParentUuid = _Comm.CommUuid
 
-  association [0..1] to I_User          as _CreatedUser on $projection.LocalCreatedBy = _CreatedUser.UserID
-  association [0..1] to I_User          as _ChangedUser on $projection.LocalCreatedBy = _ChangedUser.UserID
+  association [0..1] to ZAP_I_MSG_CFG  as _StatusMsgConfig on $projection.Status = _StatusMsgConfig.MessageNumber
 
-  association [0..1] to ZAP_I_MSG_CFG    as _CurrentMsgCfg       on  'OCRINVOICE'       = _CurrentMsgCfg.Step
-                                                                 and $projection.Status = _CurrentMsgCfg.MessageNumber
+  association [0..1] to I_User         as _CreatedUser     on $projection.LocalCreatedBy = _CreatedUser.UserID
+  association [0..1] to I_User         as _ChangedUser     on $projection.LocalCreatedBy = _ChangedUser.UserID
+
 {
   key OcrUuid,
       ParentUuid,
@@ -45,8 +45,8 @@ define root view entity ZAP_R_OCR
       // Make association public
       _Items,
       _Logs,
-      _StatusVH,
+      _Comm,
       _CreatedUser,
       _ChangedUser,
-      _CurrentMsgCfg
+      _StatusMsgConfig
 }

@@ -14,11 +14,11 @@ class zap_cl_ap_log_utilities definition
 
   protected section.
   private section.
-ENDCLASS.
+endclass.
 
 
 
-CLASS ZAP_CL_AP_LOG_UTILITIES IMPLEMENTATION.
+class zap_cl_ap_log_utilities implementation.
 
 
   method determine_log_hdr_status.
@@ -77,15 +77,29 @@ CLASS ZAP_CL_AP_LOG_UTILITIES IMPLEMENTATION.
     endloop.
 
 *.warning
-*    loop at lt_messages into ls_message where message_number = zap_if_constants=>system_status-warning.
-*      rd_status = zap_if_constants=>system_status-warning.
-*
-*      return.
-*    endloop.
+    loop at lt_messages into ls_message where message_number = zap_if_constants=>system_status-warning.
+      rd_status = zap_if_constants=>system_status-warning.
 
-*.completed
-    loop at lt_messages into ls_message where message_number = zap_if_constants=>system_status-completed.
-      rd_status = zap_if_constants=>system_status-completed.
+      return.
+    endloop.
+
+*.approved
+    loop at lt_messages into ls_message where message_number = zap_if_constants=>system_status-approved.
+      rd_status = zap_if_constants=>system_status-approved.
+
+      return.
+    endloop.
+
+*.created
+    loop at lt_messages into ls_message where message_number = zap_if_constants=>system_status-created.
+      rd_status = zap_if_constants=>system_status-created.
+
+      return.
+    endloop.
+
+*.in progress
+    loop at lt_messages into ls_message where message_number = zap_if_constants=>system_status-in_progress.
+      rd_status = zap_if_constants=>system_status-in_progress.
 
       return.
     endloop.
@@ -96,4 +110,4 @@ CLASS ZAP_CL_AP_LOG_UTILITIES IMPLEMENTATION.
     endif.
 
   endmethod.
-ENDCLASS.
+endclass.

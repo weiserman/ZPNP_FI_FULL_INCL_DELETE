@@ -3,10 +3,15 @@
 {
 "FROM":
 [
+"I_USER",
+"ZAP_I_MSG_CFG",
 "ZAP_R_OCR"
 ],
 "ASSOCIATED":
 [
+"ZAP_C_COMM_UI",
+"ZAP_C_OCR_ITEM_UI",
+"ZAP_C_OCR_LOG_UI",
 "ZAP_I_OCR_ITEM",
 "ZAP_I_OCR_LOG"
 ],

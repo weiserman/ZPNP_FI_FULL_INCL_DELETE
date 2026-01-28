@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZAP</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>Messages</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Created</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>In Progress</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Warning</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Success</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Error</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Rejected</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Approved</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>500</MSGNR>
+     <TEXT>Unknown Channel &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>501</MSGNR>
+     <TEXT>External Id Failed To Generate.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>502</MSGNR>
+     <TEXT>Unknown Attachment Type &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>503</MSGNR>
+     <TEXT>No Invoice Attachment.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>504</MSGNR>
+     <TEXT>Comm Header Entity Not Found, &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>505</MSGNR>
+     <TEXT>No Invoice Attachment Found.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>506</MSGNR>
+     <TEXT>Failure To Create Message In JSON Format.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>507</MSGNR>
+     <TEXT>Failed To Send OCR Request With HTTP Code &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>508</MSGNR>
+     <TEXT>Error Creating OCR: &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>509</MSGNR>
+     <TEXT>Error Sending OCR Request: &amp;1.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>510</MSGNR>
+     <TEXT>No Invoice Attachment Found.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>899</MSGNR>
+     <TEXT>&amp;1 &amp;2 &amp;3 &amp;4</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

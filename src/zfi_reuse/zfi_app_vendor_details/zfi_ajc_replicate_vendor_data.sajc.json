@@ -1,0 +1,18 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Replication Vendor Master Data",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "className": "ZFI_CL_REPLICATE_VENDOR_DATA"
+  },
+  "parameters": [
+    {
+      "name": "MD_INITIALIZE",
+      "title": "Initialize Vendor Master Data",
+      "screenElement": "checkbox"
+    }
+  ]
+}

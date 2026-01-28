@@ -3,6 +3,8 @@
 {
 "FROM":
 [
+"I_USER",
+"ZAP_I_MSG_CFG",
 "ZAP_I_VAL_LOG"
 ],
 "ASSOCIATED":

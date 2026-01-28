@@ -15,12 +15,20 @@ define view entity ZAP_C_VAL_LOG_UI
       MessageVar3,
       MessageVar4,
       DetailedMessage,
+      @ObjectModel.text.element: [ 'LocalCreatedByUserName' ]      
       LocalCreatedBy,
       LocalCreatedAt,
+      @ObjectModel.text.element: [ 'LocalLastChangedByUserName' ]      
       LocalLastChangedBy,
       LocalLastChangedAt,
       LastChangedAt,
+      /* Technical */
+      @UI.hidden: true
+      _CreatedUser.UserDescription as LocalCreatedByUserName,
+      @UI.hidden: true
+      _ChangedUser.UserDescription as LocalLastChangedByUserName,
 
+      _MsgConfig.Criticality,
       /* Associations */
       _Val : redirected to parent ZAP_C_VAL_UI
 }

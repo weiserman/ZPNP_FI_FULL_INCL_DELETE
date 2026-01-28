@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "An SAP Fiori application.",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "View Incoming Invoices"
+  },
+  "ui5AppDetails": {
+    "appId": "co.za.pnp.fi.ap.incominginvwe"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_C2F016AC333874FA60CD94D44029E47743567DBD_TM",
+    "semanticObject": "Invoices",
+    "action": "View",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_C2F016AC333874FA60CD94D44029E47743567DBD_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "View Incoming Invoices",
+        "subtitle": "Email Submissions"
+      }
+    }
+  ]
+}

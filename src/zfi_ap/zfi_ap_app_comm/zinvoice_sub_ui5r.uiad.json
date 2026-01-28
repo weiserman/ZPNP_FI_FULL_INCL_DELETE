@@ -1,0 +1,35 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "An SAP Fiori application.",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "Invoice Submissions"
+  },
+  "ui5AppDetails": {
+    "appId": "za.co.pnp.zfi.zap.zinvoicesubmissions"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_C2390020069E85E2F078AC769C2E72D7C75F108E_TM",
+    "semanticObject": "invoices",
+    "action": "manage",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_C2390020069E85E2F078AC769C2E72D7C75F108E_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Invoice Submissions",
+        "subtitle": "Invoice Submissions"
+      }
+    }
+  ]
+}

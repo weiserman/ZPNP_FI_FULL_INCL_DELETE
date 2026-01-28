@@ -1,0 +1,7 @@
+@EndUserText.label: 'OCR Invoice UI'
+define service ZAP_OCR_INVOICE_UI {
+  expose ZAP_C_OCR_UI      as Ocr;
+  expose ZAP_C_OCR_ITEM_UI as Items;
+  expose ZAP_C_OCR_LOG_UI  as Logs;
+  expose ZAP_C_COMM_UI     as Comm;
+}

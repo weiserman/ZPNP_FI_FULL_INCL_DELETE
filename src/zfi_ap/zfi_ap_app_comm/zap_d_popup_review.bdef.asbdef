@@ -1,0 +1,7 @@
+abstract;
+//strict ( 2 );
+
+define behavior for ZAP_D_POPUP_REVIEW //alias <alias_name>
+{
+field ( mandatory ) ReviewComment;
+}

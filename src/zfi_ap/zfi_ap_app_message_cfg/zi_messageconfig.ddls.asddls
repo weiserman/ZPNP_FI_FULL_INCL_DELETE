@@ -5,9 +5,9 @@ define view entity ZI_MessageConfig
   as select from zap_a_msg_cfg
   association to parent ZI_MessageConfig_S as _MessageConfigAll on $projection.SingletonID = _MessageConfigAll.SingletonID
 {
-      @Consumption.valueHelpDefinition: [{ entity: { name: 'ZAP_I_STEP_VH', element: 'Step' } } ]
-  key step                  as Step,
   key message_number        as MessageNumber,
+      @Consumption.valueHelpDefinition: [{ entity: { name: 'ZAP_I_STEP_VH', element: 'Step' } } ]
+      step                  as Step,
       message               as Message,
       @Consumption.valueHelpDefinition: [{ entity: { name: 'ZCA_I_CRITICALITY_VH', element: 'Criticality' } } ]
       criticality           as Criticality,

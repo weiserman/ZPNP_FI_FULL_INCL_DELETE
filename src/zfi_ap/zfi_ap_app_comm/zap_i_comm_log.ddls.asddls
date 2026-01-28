@@ -13,7 +13,6 @@ define view entity ZAP_I_COMM_LOG
   association        to parent ZAP_R_COMM as _Comm        on  $projection.CommUuid = _Comm.CommUuid
 
   association [0..1] to ZAP_I_MSG_CFG     as _MsgConfig   on  $projection.MessageNumber = _MsgConfig.MessageNumber
-                                                          and _MsgConfig.Step           = 'INGESTION'
 
   association [0..1] to I_User            as _CreatedUser on  $projection.LocalCreatedBy = _CreatedUser.UserID
   association [0..1] to I_User            as _ChangedUser on  $projection.LocalCreatedBy = _ChangedUser.UserID

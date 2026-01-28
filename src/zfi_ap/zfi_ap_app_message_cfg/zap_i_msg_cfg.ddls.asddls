@@ -5,9 +5,9 @@
 define view entity ZAP_I_MSG_CFG
   as select from zap_a_msg_cfg
 {
-  key step                  as Step,
   key message_number        as MessageNumber,
-      message               as Message,
+      step                  as Step,
+      message               as Message,    
       criticality           as Criticality,
       local_created_by      as LocalCreatedBy,
       local_created_at      as LocalCreatedAt,

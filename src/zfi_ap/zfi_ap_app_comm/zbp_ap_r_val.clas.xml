@@ -23,56 +23,56 @@
     <item>
      <ID>I</ID>
      <KEY>002</KEY>
-     <ENTRY>Invoice Reference</ENTRY>
-     <LENGTH>27</LENGTH>
+     <ENTRY>Header Invoice Reference</ENTRY>
+     <LENGTH>34</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>003</KEY>
-     <ENTRY>Invoice Date</ENTRY>
-     <LENGTH>22</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>004</KEY>
-     <ENTRY>Vendor Name</ENTRY>
-     <LENGTH>21</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>005</KEY>
-     <ENTRY>Vendor VAT Number</ENTRY>
-     <LENGTH>27</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>006</KEY>
-     <ENTRY>PnP VAT Number</ENTRY>
-     <LENGTH>24</LENGTH>
-    </item>
-    <item>
-     <ID>I</ID>
-     <KEY>007</KEY>
-     <ENTRY>Total VAT Inclusive</ENTRY>
+     <ENTRY>Header Invoice Date</ENTRY>
      <LENGTH>29</LENGTH>
     </item>
     <item>
      <ID>I</ID>
+     <KEY>004</KEY>
+     <ENTRY>Header Vendor Name</ENTRY>
+     <LENGTH>28</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>005</KEY>
+     <ENTRY>Header Vendor VAT Number</ENTRY>
+     <LENGTH>34</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>006</KEY>
+     <ENTRY>Header PnP VAT Number</ENTRY>
+     <LENGTH>31</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>007</KEY>
+     <ENTRY>Header Total VAT Inclusive</ENTRY>
+     <LENGTH>36</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
      <KEY>008</KEY>
-     <ENTRY>VAT Value</ENTRY>
-     <LENGTH>19</LENGTH>
+     <ENTRY>Header VAT Value</ENTRY>
+     <LENGTH>26</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>009</KEY>
-     <ENTRY>PnP VAT Number</ENTRY>
-     <LENGTH>24</LENGTH>
+     <ENTRY>Header PnP VAT Number</ENTRY>
+     <LENGTH>31</LENGTH>
     </item>
     <item>
      <ID>I</ID>
      <KEY>010</KEY>
-     <ENTRY>PO Number</ENTRY>
-     <LENGTH>19</LENGTH>
+     <ENTRY>Header PO Number</ENTRY>
+     <LENGTH>26</LENGTH>
     </item>
     <item>
      <ID>I</ID>

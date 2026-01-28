@@ -23,6 +23,8 @@ define view entity ZAP_C_COMM_LOG_UI
       @UI.hidden: true
       _ChangedUser.UserDescription as LocalLastChangedByUserName,
 
+      _MsgConfig.Criticality,
+
       /* Associations */
       _Comm : redirected to parent ZAP_C_COMM_UI
 }

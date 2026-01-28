@@ -123,7 +123,7 @@ class lhc_ZAP_R_APPR implementation.
 
 *.external id validation
       if ls_approval-externalid is initial.
-        message e202(zap_comm) into ld_msg_dum. "External Id Failed To Generate.
+        message e501(zap) into ld_msg_dum. "External Id Failed To Generate.
 
         lt_appr_log = value #( base lt_appr_log ( approvaluuid = ls_approval-approvaluuid
                                                    %target = value #( ( %cid     = |COMM_LOG_HDR_2{ sy-index }|

@@ -1,0 +1,34 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "An SAP Fiori application.",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "Invoice Validation"
+  },
+  "ui5AppDetails": {
+    "appId": "za.co.pnp.zfi.zap.zvalidateinvoice"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_53756E8DF9362A345AEAE387868111FD546E11C2_TM",
+    "semanticObject": "validation",
+    "action": "manage",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_53756E8DF9362A345AEAE387868111FD546E11C2_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Invoice Validation"
+      }
+    }
+  ]
+}

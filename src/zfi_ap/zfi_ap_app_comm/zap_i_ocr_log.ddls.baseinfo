@@ -7,6 +7,8 @@
 ],
 "ASSOCIATED":
 [
+"I_USER",
+"ZAP_I_MSG_CFG",
 "ZAP_R_OCR"
 ],
 "BASE":

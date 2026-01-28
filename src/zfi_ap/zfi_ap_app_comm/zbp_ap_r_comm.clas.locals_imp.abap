@@ -132,7 +132,7 @@ class lhc_zap_i_attach implementation.
         loop at lt_attachments into data(ls_attachment) where parentuuid = ls_comm_header-commuuid.
 
           if ls_attachment-attachmenttype <> zap_if_constants=>attachment-attachment_type_invoice and ls_attachment-attachmenttype <> space.
-            message e203(zap_comm) with ls_attachment-attachmenttype into ld_msg_dum. "Unknown Attachment Type &1.
+            message e502(zap) with ls_attachment-attachmenttype into ld_msg_dum. "Unknown Attachment Type &1.
 
             lt_comm_log = value #( ( commuuid = ls_comm_header-commuuid
                                       %target = value #( ( %cid     = |COMM_LOG_ATT_1{ sy-index }|
@@ -155,7 +155,7 @@ class lhc_zap_i_attach implementation.
 *Validate that at least one invoice attachment exists
         if ld_has_invoice_attachment = abap_false.
           loop at lt_attachments into ls_attachment.
-            message e204(zap_comm) into ld_msg_dum. "No Invoice Attachment.
+            message e503(zap) into ld_msg_dum. "No Invoice Attachment.
 
             lt_comm_log = value #( ( commuuid = ls_comm_header-commuuid
                                       %target = value #( ( %cid     = |COMM_LOG_ATT_2{ sy-index }|
@@ -200,6 +200,8 @@ class lhc_ZAP_R_COMM definition inheriting from cl_abap_behavior_handler.
       importing keys for zap_r_comm~determine_onsave_validate.
     methods rejectionpopup for modify
       importing keys for action zap_r_comm~rejectionpopup.
+    methods determine_onmodify_invoiceref for determine on modify
+      importing keys for zap_r_comm~determine_onmodify_invoiceref.
 
 endclass.
 
@@ -268,7 +270,7 @@ class lhc_ZAP_R_COMM implementation.
     endloop.
 
 *Modify communication header entity with new VendorNumber
-    modify entities of zap_r_comm in local mode entity zap_r_comm update fields ( ExternalId ) with corresponding #( lt_comm_headers ).
+    modify entities of zap_r_comm in local mode entity zap_r_comm update fields ( VendorNumber ) with corresponding #( lt_comm_headers ).
 
   endmethod.
 
@@ -286,7 +288,7 @@ class lhc_ZAP_R_COMM implementation.
 
 *.channel validation
       if ls_comm_header-channel <> zap_if_constants=>comm_channel-email.
-        message e201(zap_comm) with ls_comm_header-channel into ld_msg_dum. "Unknown Channel &1.
+        message e511(zap) with ls_comm_header-channel into ld_msg_dum. "Unknown Channel &1.
 
         lt_comm_log = value #( base lt_comm_log ( commuuid = ls_comm_header-commuuid
                                                    %target = value #( ( %cid     = |COMM_LOG_HDR_1{ sy-index }|
@@ -302,7 +304,7 @@ class lhc_ZAP_R_COMM implementation.
 
 *.external id validation
       if ls_comm_header-externalid is initial.
-        message e202(zap_comm) into ld_msg_dum. "External Id Failed To Generate.
+        message e501(zap) into ld_msg_dum. "External Id Failed To Generate.
 
         lt_comm_log = value #( base lt_comm_log ( commuuid = ls_comm_header-commuuid
                                                    %target = value #( ( %cid     = |COMM_LOG_HDR_2{ sy-index }|
@@ -325,7 +327,7 @@ class lhc_ZAP_R_COMM implementation.
 
   endmethod.
 
-  METHOD RejectionPopup.
+  method RejectionPopup.
 
 *Local data
     data: lt_comm_log type table for create zap_r_comm\_Logs.
@@ -336,16 +338,46 @@ class lhc_ZAP_R_COMM implementation.
 *Iterate through entity
     loop at lt_comm_headers into data(ls_comm_header).
 
+      loop at keys into data(ls_key).
+        clear: lt_comm_log.
         lt_comm_log = value #( base lt_comm_log ( commuuid = ls_comm_header-commuuid
                                                    %target = value #( ( %cid     = |COMM_LOG_HDR_1{ sy-index }|
                                                                         commuuid = ls_comm_header-commuuid
-                                                                   MessageNumber = 901
-                                                                 DetailedMessage = 'test'
-                                                                        %control = value #( MessageNumber   = if_abap_behv=>mk-on
-                                                                                            DetailedMessage = if_abap_behv=>mk-on ) ) ) ) ).
+                                                                   MessageNumber = ls_key-%param-rejectionmessagecode
+                                                                        %control = value #( MessageNumber   = if_abap_behv=>mk-on ) ) ) ) ).
 
-      modify entities of zap_r_comm in local mode entity zap_r_comm create by \_Logs from corresponding #( lt_comm_log ).
-     endloop.
-  ENDMETHOD.
+        modify entities of zap_r_comm in local mode entity zap_r_comm create by \_Logs from corresponding #( lt_comm_log ).
+      endloop.
+
+    endloop.
+  endmethod.
+
+  method determine_onmodify_invoiceref.
+
+**Local data
+*    data: lr_abap_regex   type ref to cl_abap_regex,
+*          lr_abap_matcher type ref to cl_abap_matcher.
+*    data: ld_domain_pattern  type string value '(?!invoice)(INV[^|()\s]{1,13}|\bINV \d{6})'.
+*
+**Read communication header entity
+*    read entities of zap_r_comm in local mode entity zap_r_comm all fields with corresponding #( keys ) result data(lt_comm_headers).
+*
+**Iterate through entity and assign VendorNumber
+*    loop at lt_comm_headers assigning field-symbol(<ls_comm_header>).
+*      clear: lr_abap_regex, lr_abap_matcher.
+*
+*      lr_abap_regex = cl_abap_regex=>create_pcre( exporting pattern = ld_domain_pattern ).
+*      lr_abap_matcher = lr_abap_regex->create_matcher( text = <ls_comm_header>-emailsubject ).
+*
+*      if lr_abap_matcher->find_next( ) = abap_true.
+*        <ls_comm_header>-invoicereference = lr_abap_matcher->get_submatch( index = 0 ).
+*      endif.
+*
+*    endloop.
+*
+**Modify communication header entity with new VendorNumber
+*    modify entities of zap_r_comm in local mode entity zap_r_comm update fields ( InvoiceReference ) with corresponding #( lt_comm_headers ).
+
+  endmethod.
 
 endclass.

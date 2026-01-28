@@ -8,4 +8,5 @@ define service ZAP_VALIDATION_UI {
   expose ZAP_R_OCR         as Ocr;
   expose ZAP_I_ATTACH      as Attachments;
   expose ZAP_I_VEND_CC     as vend_cc;
+  expose zap_i_val_chng    as val_chng;
 }

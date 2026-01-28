@@ -5,9 +5,10 @@ interface zap_if_constants
                success     type zap_de_message_num value '001',
                in_progress type zap_de_message_num value '002',
                warning     type zap_de_message_num value '003',
-               error       type zap_de_message_num value '004',
-               rejected    type zap_de_message_num value '005',
-               completed   type zap_de_message_num value '006',
+               created     type zap_de_message_num value '004',
+               error       type zap_de_message_num value '005',
+               rejected    type zap_de_message_num value '006',
+               approved    type zap_de_message_num value '007',
              end of system_status.
 
   constants: begin of step,
@@ -28,6 +29,12 @@ interface zap_if_constants
                approval_external_id_object   type cl_numberrange_runtime=>nr_object   value 'ZAP_EXT_ID',
                approval_external_nr_range_nr type cl_numberrange_runtime=>nr_interval value '1',
              end of number_range.
+
+  constants: begin of criticality,
+              red    type zca_de_ui_criticality value '1',
+              yellow type zca_de_ui_criticality value '2',
+              green  type zca_de_ui_criticality value '3',
+             end of criticality.
 
   constants: begin of comm_channel,
                email type zap_de_channel value 'EXPINVINB',

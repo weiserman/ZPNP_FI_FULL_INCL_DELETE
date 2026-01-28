@@ -25,7 +25,7 @@ with additional save
 
   action RejectionPopup parameter zap_d_popup_rejection; // Custom action to trigger popup for rejection reason
 
-  //Side Effects
+//Side Effects
   side effects
   {
     action RejectionPopup affects $self;
@@ -43,6 +43,7 @@ with additional save
   //Determinations
   determination determine_onsave_externalid on save { create; field CommUuid; } // Generate ExternalId on create, do once
   determination determine_onmodify_vendornum on modify { create; field CommUuid; } // Set VendorNumber on modify, do once
+  determination determine_onmodify_invoiceref on modify { create; field CommUuid; } // Set InvoiceReference on modify, do once
   determination determine_onsave_validate on save { create; } // General validation on create, avoided validation methods as failures should not block save
 
   //Validations

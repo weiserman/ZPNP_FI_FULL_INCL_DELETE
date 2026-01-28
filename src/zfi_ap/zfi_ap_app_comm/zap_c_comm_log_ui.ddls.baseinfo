@@ -4,7 +4,8 @@
 "FROM":
 [
 "I_USER",
-"ZAP_I_COMM_LOG"
+"ZAP_I_COMM_LOG",
+"ZAP_I_MSG_CFG"
 ],
 "ASSOCIATED":
 [

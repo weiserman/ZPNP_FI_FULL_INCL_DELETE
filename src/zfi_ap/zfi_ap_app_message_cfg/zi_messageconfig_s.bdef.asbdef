@@ -49,7 +49,6 @@ lock dependent by _MessageConfigAll
 authorization dependent by _MessageConfigAll
 {
   field ( mandatory : create )
-   Step,
    MessageNumber;
 
   field ( readonly )
@@ -61,7 +60,6 @@ authorization dependent by _MessageConfigAll
    LastChangedAt;
 
   field ( readonly : update )
-   Step,
    MessageNumber;
 
   field ( notrigger )

@@ -1,4 +1,4 @@
-!class zap_cl_ap_validation definition
+class zap_cl_ap_validation definition
 
   public
   final
@@ -147,7 +147,7 @@ method ecc_validations.
       elseif sy-subrc eq 3.
         append value #( MessageNumber = '093' DetailedMessage = |ECC OTHER FAILUE -  Contact System Administrator| ) to lt_val_logs_rfc.
       elseif ld_complete ne abap_true.      "In case there is a dump
-        append value #( MessageNumber = '094' DetailedMessage = |ECC FAILUE -  Check For Short Dumps| ) to lt_val_logs_rfc.
+        append value #( MessageNumber = '094' DetailedMessage = |ECC FAILUE -  Check For Short Dumps in ECC| ) to lt_val_logs_rfc.
       else.
       endif.
       move-corresponding: lt_val_logs_rfc to ct_val_logs keeping target lines,
@@ -170,44 +170,44 @@ method rap_validate_header.
 *Must be at least 9 long and must be numerical.
   if ls_val_head-PurchaseOrderNumber is initial
   or ls_val_head-PurchaseOrderNumber co '0'.
-    append value #( MessageNumber = '101' DetailedMessage = 'Purchase Order cannot be blank or all zeroes' ) to ct_val_logs.
+    append value #( MessageNumber = '261' DetailedMessage = 'Purchase Order cannot be blank or all zeroes' ) to ct_val_logs.
   elseif ls_val_head-PurchaseOrderNumber cn '0123456789' .
-    append value #( MessageNumber = '102' DetailedMessage = 'Purchase Order must be numeric' )               to ct_val_logs.
+    append value #( MessageNumber = '262' DetailedMessage = 'Purchase Order must be numeric' )               to ct_val_logs.
   elseif ls_val_head-PurchaseOrderNumber+0(2) eq '00' .
-    append value #( MessageNumber = '103' DetailedMessage = 'Purchase Order is too short' )                  to ct_val_logs.
+    append value #( MessageNumber = '263' DetailedMessage = 'Purchase Order is too short' )                  to ct_val_logs.
   endif.
 
 *I N V O I C E   R E F E R E N C E
 *Cannot be blank or empty
   if ls_val_head-InvoiceReference is initial.
-    append value #( MessageNumber = '104' DetailedMessage = 'Invoice Reference Is required' ) to ct_val_logs.
+    append value #( MessageNumber = '264' DetailedMessage = 'Invoice Reference Is required' ) to ct_val_logs.
   endif.
 
 *I N V O I C E   D A T E
 *Cannot be empty and must be a valid date
   if ls_val_head-InvoiceDate is initial
   or  ls_val_head-InvoiceDate co '0'.
-    append value #( MessageNumber = '105' DetailedMessage = 'Invoice Date is required' ) to ct_val_logs.
+    append value #( MessageNumber = '265' DetailedMessage = 'Invoice Date is required' ) to ct_val_logs.
 *    elseif is_valid_date( id_date = conv #( ls_val_head-invoice_date ) ) eq abap_false.
 *      append value #( MessageNumber = '106' DetailedMessage = 'Invoice Date is invalid' ) to ct_val_logs.
   endif.
 
 *T O T A L   A M O U N T
   if ls_val_head-TotalVatInclusive le 0.
-    append value #( MessageNumber = '107' DetailedMessage = 'VAT Inclusive Total must be greater than R0.00 ' ) to ct_val_logs.
+    append value #( MessageNumber = '267' DetailedMessage = 'VAT Inclusive Total must be greater than R0.00 ' ) to ct_val_logs.
   elseif ls_val_head-TotalVatInclusive lt ls_val_head-VatValue.
-    append value #( MessageNumber = '108' DetailedMessage = 'VAT Inclusive Total must be greater than VAT Total' ) to ct_val_logs.
+    append value #( MessageNumber = '268' DetailedMessage = 'VAT Inclusive Total must be greater than VAT Total' ) to ct_val_logs.
   endif.
 
 * V A T   V A L U E
   if ls_val_head-VatValue ge ls_val_head-TotalVatInclusive.
-    append value #( MessageNumber = '109' DetailedMessage = 'VAT Total is greater or equal VAT Inclusive Total' ) to ct_val_logs.
+    append value #( MessageNumber = '269' DetailedMessage = 'VAT Total is greater or equal VAT Inclusive Total' ) to ct_val_logs.
   endif.
 
 * V E N D O R   N A M E
   if ls_val_head-VendorName is initial
   and ls_val_head-AcknowledgeWarning = abap_false.            "Ignore this one if selected
-    append value #( MessageNumber = '110' DetailedMessage = 'Vendor name is blank' ) to ct_val_logs.
+    append value #( MessageNumber = '270' DetailedMessage = 'Vendor name is blank' ) to ct_val_logs.
   endif.
 
 endmethod.
@@ -218,7 +218,7 @@ method rap_validate_items.
 
   data: ld_tot_item_nett_value  type zap_de_val_total_vat_inclusive.
   if it_val_items  is initial.
-    append value #( MessageNumber = '151' DetailedMessage = 'At least one line item required' ) to ct_val_logs.
+    append value #( MessageNumber = '271' DetailedMessage = 'At least one line item required' ) to ct_val_logs.
   endif.
 
 * D E S C R I P T I O N
@@ -232,7 +232,7 @@ method rap_validate_items.
       exit.
     endloop.
     if sy-subrc eq 0.
-      append value #( MessageNumber = '152' DetailedMessage = 'Line item description required' ) to ct_val_logs.
+      append value #( MessageNumber = '272' DetailedMessage = 'Line item description required' ) to ct_val_logs.
     endif.
   endif.
 
@@ -243,7 +243,7 @@ method rap_validate_items.
   endloop.
   if ld_tot_item_nett_value ne ( ls_val_head-TotalVatInclusive - ls_val_head-VatValue )
   and ls_val_head-AcknowledgeWarning = abap_false.            "Ignore this one if selected
-    append value #( MessageNumber = '153' DetailedMessage = 'Invoice does not Balance' ) to ct_val_logs.
+    append value #( MessageNumber = '273' DetailedMessage = 'Invoice does not Balance' ) to ct_val_logs.
   endif.
 endmethod.
 endclass.

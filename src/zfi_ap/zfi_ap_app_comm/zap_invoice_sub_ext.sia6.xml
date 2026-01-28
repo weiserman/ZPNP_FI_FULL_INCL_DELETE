@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_SIA6" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <SIA6>
+    <MAIN_OBJECT>
+     <NAME>ZAP_INVOICE_SUB_EXT</NAME>
+     <TYPE>SIA6</TYPE>
+     <DESCRIPTION>Invoice Submissions</DESCRIPTION>
+     <RESPONSIBLE>CB9980000002</RESPONSIBLE>
+     <MASTER_LANGUAGE>EN</MASTER_LANGUAGE>
+     <MASTER_SYSTEM>SSD</MASTER_SYSTEM>
+     <PACKAGE_REF>
+      <PACKAGE_NAME>ZFI_AP_APP_COMM</PACKAGE_NAME>
+     </PACKAGE_REF>
+     <ABAP_LANGU_VERSION>5</ABAP_LANGU_VERSION>
+    </MAIN_OBJECT>
+    <APP_ID>ZAP_INVOICE_SUB_EXT</APP_ID>
+    <APP_TYPE>EXT</APP_TYPE>
+    <ABAP_LANGUAGE_VERSION>5</ABAP_LANGUAGE_VERSION>
+    <UI_APP_ID>ZINVOICE_SUB_UI5R</UI_APP_ID>
+    <SERVICE>
+     <item>
+      <REL_NAME>ZAP_COMM_UI_V4</REL_NAME>
+      <REL_TYPE>G4BA</REL_TYPE>
+      <APP_ID>ZAP_INVOICE_SUB_EXT</APP_ID>
+      <SRVC_NAME>00DA0F121A1642CB7EAAE2FE7CC59C</SRVC_NAME>
+      <SRVC_TYPE>HT</SRVC_TYPE>
+      <UIAD_SRC>ZINVOICE_SUB_UI5R</UIAD_SRC>
+      <TEXT>Comm Service Binding UI</TEXT>
+      <TYPE_TEXT>OData V4</TYPE_TEXT>
+     </item>
+    </SERVICE>
+    <PUBLISH_STATUS>p</PUBLISH_STATUS>
+   </SIA6>
+  </asx:values>
+ </asx:abap>
+</abapGit>

@@ -12,8 +12,10 @@ define root view entity ZAP_C_COMM_UI
       ChannelType,
       CountryCode,
       IntegrationCorrelationId,
+      @Consumption.valueHelpDefinition: [{ entity: { name: 'ZAP_I_STATUS_VH', element: 'Status' } } ]
+      @ObjectModel.text.element: ['CommStatus_Description']
       CommStatus,
-      CommLogId,    
+      CommLogId,
       @Consumption.valueHelpDefinition: [{ entity: { name: 'ZAP_I_STEP_VH', element: 'Step' } } ]
       @ObjectModel.text.element: ['CurrentStep_Description']
       CurrentStep,
@@ -26,6 +28,7 @@ define root view entity ZAP_C_COMM_UI
       EmailSubject,
       EmailSentAt,
       EmailReceivedAt,
+      @Consumption.valueHelpDefinition: [{ entity: { name: 'ZFI_I_VEND_VH', element: 'VendorNumber' } } ]
       VendorNumber,
       InvoiceReference,
       @ObjectModel.text.element: [ 'LocalCreatedByUserName' ]
@@ -39,15 +42,18 @@ define root view entity ZAP_C_COMM_UI
 
       /* Technical */
       @UI.hidden: true
-      _CreatedUser.UserDescription     as LocalCreatedByUserName,
+      _CreatedUser.UserDescription            as LocalCreatedByUserName,
       @UI.hidden: true
-      _ChangedUser.UserDescription     as LocalLastChangedByUserName,
+      _ChangedUser.UserDescription            as LocalLastChangedByUserName,
       @UI.hidden: true
       LastChangedAt,
 
-      _CurrentStepVH.Description       as CurrentStep_Description,
-      _CurrentStepStatusVH.Description as CurrentStepStatus_Description,
-      _CurrentMsgCfg.Criticality       as CurrentStepStatus_Criticality,
+      _CommStatusMsgConfig.Message            as CommStatus_Description,
+      _CommStatusMsgConfig.Criticality        as CommStatus_Criticality,
+      _CurrentStepStatusMsgConfig.Message     as CurrentStepStatus_Description,
+      _CurrentStepStatusMsgConfig.Criticality as CurrentStepStatus_Criticality,
+      _CurrentStepVH.Description              as CurrentStep_Description,
+
 
       /* Associations */
       _Attachments : redirected to composition child ZAP_C_COMM_ATTACH_UI,

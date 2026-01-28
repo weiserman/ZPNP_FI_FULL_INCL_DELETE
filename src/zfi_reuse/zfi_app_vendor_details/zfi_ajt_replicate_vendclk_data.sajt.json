@@ -1,0 +1,19 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Replicate Vendor Clerk Data",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZFI_AJC_REPLICATE_VENDCLK_DATA"
+  },
+  "parameters": {
+    "singleValueParameters": [
+      {
+        "name": "MD_INITIALIZE",
+        "value": ""
+      }
+    ]
+  }
+}

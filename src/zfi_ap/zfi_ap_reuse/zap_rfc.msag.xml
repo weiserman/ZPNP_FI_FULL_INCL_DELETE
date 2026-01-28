@@ -38,6 +38,12 @@
      <MSGNR>095</MSGNR>
      <TEXT>DESTINATION ERROR - &amp;1&amp;2&amp;3&amp;4</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP_RFC</ARBGB>
+     <MSGNR>999</MSGNR>
+     <TEXT>&amp;1 &amp;2 &amp;3 &amp;4</TEXT>
+    </T100>
    </T100>
   </asx:values>
  </asx:abap>

@@ -49,6 +49,7 @@ class zap_cl_ap_val_build_park implementation.
 
   endmethod.
   method build_parking_data.
+
     data: lt_park_logs  type ty_tt_park_logs,
           ls_parked_doc type ty_parked_doc.
     clear: et_park_create, et_park_create_log.
@@ -60,7 +61,6 @@ class zap_cl_ap_val_build_park implementation.
 *Read the attachments
     read entities of zap_r_comm  entity zap_r_comm            all fields with value #( (  %key-CommUuid =  id_comm_guid ) ) result data(lt_comm) .
     read entities of zap_r_comm  entity zap_r_comm  by \_Attachments all fields with corresponding #( lt_comm )             result data(lt_attach).
-
 
 
 *Do the parking in ECC
@@ -79,7 +79,7 @@ class zap_cl_ap_val_build_park implementation.
                                %control = value #( ParentUuid     = if_abap_behv=>mk-on
                                                    ParkDoc        = if_abap_behv=>mk-on
                                                    ParkDocYear    = if_abap_behv=>mk-on
-                                                   ParkDocStatus  = if_abap_behv=>mk-on    ) ) ).
+                                                   ParkDocStatus  = if_abap_behv=>mk-on  ) ) ).
 
     et_park_create_log = value #( for ls_new_val_log in lt_park_logs index into ld_index
                                    (  %cid_ref  = 'PARK_HEAD_1'

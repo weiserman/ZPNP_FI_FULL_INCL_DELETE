@@ -12,9 +12,18 @@ define root view entity ZAP_R_VAL
   association [0..1] to ZAP_I_VEND_CC   as _Vend_CCode   on  $projection.VendorNumber = _Vend_CCode.VendorNumber
                                                          and $projection.PoCcode      = _Vend_CCode.PoCcode
 
+//  association [0..*] to ZAP_I_VAL_LOG    as _LatestLogs          on  $projection.ValUuid  = _LatestLogs.ValUuid
+//                                                                 and $projection.ValLogId = _LatestLogs.LogId
+                                                                 
   association [1..1] to ZAP_I_STATUS_VH  as _StepStatusVH on  $projection.Status = _StepStatusVH.Status  
   association [1..1] to ZAP_I_PO_TYPE_VH as _POTypeVH     on  $projection.PoType = _POTypeVH.PoType  
 //  association [1..1] to ZAP_I_STEP_VH    as _CurrentStepVH       on  $projection.CurrentStep = _CurrentStepVH.Step  
+
+  association [0..*] to zap_i_val_chng   as _ValChng             on  $projection.ValUuid        = _ValChng.ValUuid
+  association [0..1] to I_User           as _CreatedUser         on  $projection.LocalCreatedBy = _CreatedUser.UserID
+  association [0..1] to I_User           as _ChangedUser         on  $projection.LocalCreatedBy = _ChangedUser.UserID
+  association [0..1] to ZAP_I_MSG_CFG    as _CurrentMsgCfg       on $projection.Status      = _CurrentMsgCfg.MessageNumber
+                                                                    //and  'VALIDATION'            = _CurrentMsgCfg.Step    //Messages are unique
 
 {
   key ValUuid,
@@ -48,10 +57,15 @@ define root view entity ZAP_R_VAL
       _Logs,
       _OCR,
       _Comm,
+      _CreatedUser,
+      _ChangedUser,
       _Attachments,
       _Vend_CCode,
       _StepStatusVH,
-      _POTypeVH
+      _POTypeVH,
+      _CurrentMsgCfg,
+      _ValChng 
+//      _LatestLogs
 //      _Proc_ClrkVH
       
 }

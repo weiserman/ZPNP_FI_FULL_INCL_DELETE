@@ -15,7 +15,7 @@ with additional save
 
   draft action Activate optimized;
   draft action Discard;
-  draft action Edit;
+  draft action ( features : instance ) Edit;
   draft action Resume;
   draft determine action Prepare;
 
@@ -24,8 +24,16 @@ with additional save
   association _Logs { create; with draft; }
 
   //Actions
-  //  action check parameter  $self;
-  action ( features : instance ) validateData result [1] $self;
+   action ( features : instance ) RejectionPopup parameter zap_d_popup_rejection; // Custom action to trigger popup for rejection reason
+   action  ReviewPopup parameter zap_d_popup_review ; // Custom action to trigger popup for rejection reason
+   action ( features : instance ) validateData result [1] $self;
+
+  //Side Effects
+  side effects
+  {
+    action RejectionPopup affects $self;
+    action ReviewPopup affects $self;       //Maybe - not sure if it updates itself
+  }
 
   //Numbering
   field ( numbering : managed, readonly ) ValUuid;
@@ -125,6 +133,7 @@ authorization dependent by _Val
 define behavior for ZAP_I_VAL_LOG //alias <alias_name>
 persistent table zap_a_val_log
 draft table zap_d_val_log
+with additional save
 etag master LocalLastChangedAt
 lock dependent by _Val
 authorization dependent by _Val

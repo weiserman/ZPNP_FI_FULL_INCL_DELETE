@@ -84,7 +84,7 @@ class zap_cl_bgpf_operations implementation.
          where comm_uuid = @gs_register_parameters-comm_uuid
           into @data(ls_comm_header).
         if sy-subrc <> 0.
-          message e201(zap_ocr) with gs_register_parameters-comm_uuid into gd_msg_dummy. "Comm Header Entity Not Found, &1.
+          message e504(zap) with gs_register_parameters-comm_uuid into gd_msg_dummy. "Comm Header Entity Not Found, &1.
           zfi_cx=>raise_with_sysmsg(  ).
         endif.
 
@@ -94,7 +94,7 @@ class zap_cl_bgpf_operations implementation.
            and attachment_type = @zap_if_constants=>attachment-attachment_type_invoice
           into @data(ls_attachment).
         if sy-subrc <> 0.
-          message e202(zap_ocr) into gd_msg_dummy. "No Invoice Attachment Found.
+          message e510(zap) into gd_msg_dummy. "No Invoice Attachment Found.
           zfi_cx=>raise_with_sysmsg(  ).
         endif.
 
@@ -132,7 +132,7 @@ class zap_cl_bgpf_operations implementation.
                                                    pretty_name = /ui2/cl_json=>pretty_mode-camel_case ).
 
         if ld_json_message is initial.
-          message e203(zap_ocr) into gd_msg_dummy. "Failure To Create Message In JSON Format.
+          message e506(zap) into gd_msg_dummy. "Failure To Create Message In JSON Format.
           zfi_cx=>raise_with_sysmsg(  ).
         endif.
 
@@ -147,19 +147,19 @@ class zap_cl_bgpf_operations implementation.
 
             data(lr_response) = lr_client->execute( i_method = if_web_http_client=>post ).
             if lr_response->get_status( )-code <> '200'.
-              message e204(zap_ocr) with lr_response->get_status( )-code into gd_msg_dummy. "Failed To Send OCR Request With HTTP Code &1.
+              message e507(zap) with lr_response->get_status( )-code into gd_msg_dummy. "Failed To Send OCR Request With HTTP Code &1.
               zfi_cx=>raise_with_sysmsg(  ).
             endif.
 
           catch cx_appdestination into data(lr_cx_appdestination).
-            message e200(zap_ocr) with lr_cx_appdestination->get_text( ) into gd_msg_dummy. "&1 &2 &3 &4
+            message e899(zap) with lr_cx_appdestination->get_text( ) into gd_msg_dummy. "&1 &2 &3 &4
             zfi_cx=>raise_with_sysmsg(  ).
-            message e200(zap_ocr) with gd_msg_dummy into gd_msg_dummy. "&1 &2 &3 &4
+            message e899(zap) with gd_msg_dummy into gd_msg_dummy. "&1 &2 &3 &4
           catch cx_communication_target_error into data(lr_cx_comm_target_error).
-            message e200(zap_ocr) with lr_cx_comm_target_error->get_text( ) into gd_msg_dummy. "&1 &2 &3 &4
+            message e899(zap) with lr_cx_comm_target_error->get_text( ) into gd_msg_dummy. "&1 &2 &3 &4
             zfi_cx=>raise_with_sysmsg(  ).
           catch cx_web_http_client_error into data(lr_cx_web_http_client_error).
-            message e200(zap_ocr) with lr_cx_web_http_client_error->get_text( ) into gd_msg_dummy. "&1 &2 &3 &4
+            message e899(zap) with lr_cx_web_http_client_error->get_text( ) into gd_msg_dummy. "&1 &2 &3 &4
             zfi_cx=>raise_with_sysmsg(  ).
         endtry.
 
@@ -198,7 +198,7 @@ class zap_cl_bgpf_operations implementation.
 *Check for errors, if found fail the BGPF
     if ls_ocr_create_failed is not initial.
       loop at ls_ocr_create_reported-zap_r_ocr into data(ls_ocr_head_create_reported).
-        message e206(zap_ocr) with ls_ocr_head_create_reported-%msg->if_message~get_text( ) into gd_msg_dummy. "Error Sending OCR Request: &1.
+        message e507(zap) with ls_ocr_head_create_reported-%msg->if_message~get_text( ) into gd_msg_dummy. "Error Sending OCR Request: &1.
         raise exception type cx_bgmc_operation
           exporting
             textid         = value #( msgid = sy-msgid
@@ -309,7 +309,7 @@ class zap_cl_bgpf_operations implementation.
 *Check for errors, if found fail the BGPF
     if ls_ocr_create_failed is not initial.
       loop at ls_ocr_create_reported-zap_r_ocr into data(ls_ocr_head_create_reported).
-        message e205(zap_ocr) with ls_ocr_head_create_reported-%msg->if_message~get_text( ) into gd_msg_dummy. "Error Creating OCR: &1.
+        message e508(zap) with ls_ocr_head_create_reported-%msg->if_message~get_text( ) into gd_msg_dummy. "Error Creating OCR: &1.
         raise exception type cx_bgmc_operation
           exporting
             textid         = value #( msgid = sy-msgid
