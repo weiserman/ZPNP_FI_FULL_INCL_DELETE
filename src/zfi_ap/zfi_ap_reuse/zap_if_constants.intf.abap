@@ -31,13 +31,27 @@ interface zap_if_constants
              end of number_range.
 
   constants: begin of criticality,
-              red    type zca_de_ui_criticality value '1',
-              yellow type zca_de_ui_criticality value '2',
-              green  type zca_de_ui_criticality value '3',
+               red    type zca_de_ui_criticality value '1',
+               yellow type zca_de_ui_criticality value '2',
+               green  type zca_de_ui_criticality value '3',
              end of criticality.
 
   constants: begin of comm_channel,
                email type zap_de_channel value 'EXPINVINB',
              end of comm_channel.
+
+  constants: begin of park_status,
+              parked          type zap_de_park_doc_status value 'A',
+              parked_complete type zap_de_park_doc_status value 'B',
+             end of park_status.
+
+  constants: begin of appr_resp_status,
+               logged   type zap_de_sharep_appr_resp_sts value 'LOGGED',
+               assigned type zap_de_sharep_appr_resp_sts value 'ASSIGNED',
+               approved type zap_de_sharep_appr_resp_sts value 'APPROVED',
+               rejected type zap_de_sharep_appr_resp_sts value 'REJECTED',
+               expired  type zap_de_sharep_appr_resp_sts value 'EXPIRED',
+               failure  type zap_de_sharep_appr_resp_sts value 'FAILURE',
+             end of appr_resp_status.
 
 endinterface.

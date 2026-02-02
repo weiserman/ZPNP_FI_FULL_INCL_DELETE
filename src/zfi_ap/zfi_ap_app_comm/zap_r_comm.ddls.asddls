@@ -42,6 +42,7 @@ define root view entity ZAP_R_COMM
       EmailReceivedAt,
       VendorNumber,
       InvoiceReference,
+      PoCcode,
       @Semantics.user.createdBy: true
       LocalCreatedBy,
       @Semantics.systemDateTime.createdAt: true

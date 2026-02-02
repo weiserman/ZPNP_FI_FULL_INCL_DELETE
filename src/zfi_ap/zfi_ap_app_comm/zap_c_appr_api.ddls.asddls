@@ -9,10 +9,19 @@ define root view entity ZAP_C_APPR_API
       ParentUuid,
       ExternalId,
       Status,
-      SharepointApprovalStatus,
-      SharepointApprovalId,
-      SharepointApproverName,
-      SharepointApproverEmail,
+      SharepointId,
+      ResponseStatus,
+      ResponseMessageNumber,
+      ResponseMessage,
+      ResponseTimestamp,
+      ApproverName,
+      ApproverEmail,
+      ApprLogId,
+      LocalCreatedBy,
+      LocalCreatedAt,
+      LocalLastChangedBy,
+      LocalLastChangedAt,
+      LastChangedAt,
       
       /* Associations */
       _Logs : redirected to composition child ZAP_C_APPR_LOG_API

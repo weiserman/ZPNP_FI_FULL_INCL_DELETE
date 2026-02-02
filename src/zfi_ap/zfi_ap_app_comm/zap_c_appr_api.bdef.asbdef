@@ -8,6 +8,7 @@ define behavior for ZAP_C_APPR_API //alias <alias_name>
   use delete;
 
   use action SharepointApprCreateResp;
+  use action SharepointApprResp;
 
   use association _Logs { create; }
 }

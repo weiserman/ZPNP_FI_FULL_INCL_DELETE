@@ -1,6 +1,7 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Communication UI Projection View'
 @Metadata.ignorePropagatedAnnotations: true
+@Metadata.allowExtensions: true
 define root view entity ZAP_C_COMM_UI
   provider contract transactional_query
   as projection on ZAP_R_COMM
@@ -31,6 +32,7 @@ define root view entity ZAP_C_COMM_UI
       @Consumption.valueHelpDefinition: [{ entity: { name: 'ZFI_I_VEND_VH', element: 'VendorNumber' } } ]
       VendorNumber,
       InvoiceReference,
+      PoCcode,
       @ObjectModel.text.element: [ 'LocalCreatedByUserName' ]
       LocalCreatedBy,
       @Consumption.filter: { selectionType: #INTERVAL, multipleSelections: false }

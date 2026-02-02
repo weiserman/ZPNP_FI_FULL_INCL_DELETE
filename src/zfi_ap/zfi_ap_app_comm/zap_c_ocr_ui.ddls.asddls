@@ -10,7 +10,7 @@ define root view entity ZAP_C_OCR_UI
       @Consumption.valueHelpDefinition: [{ entity: { name: 'ZAP_I_STATUS_VH', element: 'Status' } } ]
       @ObjectModel.text.element: ['Status_Description']
       Status,
-      LogId,
+      OcrLogId,
       IntegrationCorrelationId,
       InvoiceReference,
       InvoiceDate,

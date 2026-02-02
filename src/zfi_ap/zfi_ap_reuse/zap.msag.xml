@@ -12,7 +12,7 @@
      <SPRSL>E</SPRSL>
      <ARBGB>ZAP</ARBGB>
      <MSGNR>001</MSGNR>
-     <TEXT>Created</TEXT>
+     <TEXT>Success</TEXT>
     </T100>
     <T100>
      <SPRSL>E</SPRSL>
@@ -30,7 +30,7 @@
      <SPRSL>E</SPRSL>
      <ARBGB>ZAP</ARBGB>
      <MSGNR>004</MSGNR>
-     <TEXT>Success</TEXT>
+     <TEXT>Created</TEXT>
     </T100>
     <T100>
      <SPRSL>E</SPRSL>
@@ -115,6 +115,12 @@
      <ARBGB>ZAP</ARBGB>
      <MSGNR>510</MSGNR>
      <TEXT>No Invoice Attachment Found.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZAP</ARBGB>
+     <MSGNR>511</MSGNR>
+     <TEXT>Error Creating Approval: &amp;1</TEXT>
     </T100>
     <T100>
      <SPRSL>E</SPRSL>

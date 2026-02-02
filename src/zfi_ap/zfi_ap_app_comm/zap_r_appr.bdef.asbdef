@@ -16,6 +16,7 @@ etag master LastChangedAt
 
   //Actions
   action SharepointApprCreateResp parameter zap_d_sharep_appr_create_resp result [1] zap_d_sharep_appr_create_resp;
+  action SharepointApprResp parameter zap_d_sharep_appr_resp result [1] zap_d_sharep_appr_resp;
 
   //Numbering
   field ( numbering : managed, readonly ) ApprovalUuid;
@@ -30,20 +31,23 @@ etag master LastChangedAt
   //Mapping
   mapping for zap_a_appr corresponding
     {
-      ApprovalUuid             = approval_uuid;
-      ParentUuid               = parent_uuid;
-      ExternalId               = external_id;
-      Status                   = status;
-      SharepointApprovalStatus = sharepoint_approval_status;
-      SharepointApprovalId     = sharepoint_approval_id;
-      SharepointApproverName   = sharepoint_approver_name;
-      SharepointApproverEmail  = sharepoint_approver_email;
-      ApprLogId                = appr_log_id;
-      LocalCreatedBy           = local_created_by;
-      LocalCreatedAt           = local_created_at;
-      LocalLastChangedBy       = local_last_changed_by;
-      LocalLastChangedAt       = local_last_changed_at;
-      LastChangedAt            = last_changed_at;
+      ApprovalUuid          = approval_uuid;
+      ParentUuid            = parent_uuid;
+      ExternalId            = external_id;
+      Status                = status;
+      SharepointId          = sharepoint_id;
+      ResponseStatus        = response_status;
+      ResponseMessageNumber = response_message_number;
+      ResponseMessage       = response_message;
+      ResponseTimestamp     = response_timestamp;
+      ApproverName          = approver_name;
+      ApproverEmail         = approver_email;
+      ApprLogId             = appr_log_id;
+      LocalCreatedBy        = local_created_by;
+      LocalCreatedAt        = local_created_at;
+      LocalLastChangedBy    = local_last_changed_by;
+      LocalLastChangedAt    = local_last_changed_at;
+      LastChangedAt         = last_changed_at;
     }
 
 }

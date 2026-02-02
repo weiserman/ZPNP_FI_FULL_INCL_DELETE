@@ -32,6 +32,7 @@ define view entity ZAP_I_COMM
       EmailReceivedAt,
       VendorNumber,
       InvoiceReference,
+      PoCcode,
       LocalCreatedBy,
       LocalCreatedAt,
       LocalLastChangedBy,

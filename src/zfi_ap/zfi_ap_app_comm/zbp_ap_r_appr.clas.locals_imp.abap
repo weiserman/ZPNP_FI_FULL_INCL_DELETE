@@ -63,6 +63,8 @@ class lhc_ZAP_R_APPR definition inheriting from cl_abap_behavior_handler.
       importing keys for zap_r_appr~determine_onsave_validate.
     methods sharepointapprcreateresp for modify
       importing keys for action zap_r_appr~sharepointapprcreateresp result result.
+    methods sharepointapprresp for modify
+      importing keys for action zap_r_appr~sharepointapprresp result result.
 
 endclass.
 
@@ -115,7 +117,7 @@ class lhc_ZAP_R_APPR implementation.
     data: lt_appr_log type table for create zap_r_appr\_Logs.
     data: ld_msg_dum type bapi_msg.
 
-*Read communication header entity
+*Read approval entity
     read entities of zap_r_appr in local mode entity zap_r_appr all fields with corresponding #( keys ) result data(lt_approvals).
 
 *Iterate through entity and validate elements
@@ -143,8 +145,25 @@ class lhc_ZAP_R_APPR implementation.
 
   endmethod.
 
-  METHOD SharepointApprCreateResp.
-  ENDMETHOD.
+  method SharepointApprCreateResp.
+
+*Read approval entity
+    read entities of zap_r_appr in local mode entity zap_r_appr all fields with corresponding #( keys ) result data(lt_approvals).
+
+
+
+
+
+
+
+
+
+
+
+  endmethod.
+
+  method SharepointApprResp.
+  endmethod.
 
 endclass.
 
@@ -161,33 +180,51 @@ class lsc_ZAP_R_APPR implementation.
 
   method save_modified.
 
-*Local data
-    data: lt_appr_hist type standard table of zap_a_appr_hist.
-    data: ls_appr_hist type zap_a_appr_hist.
-
-*Check for any changes, if there are then write it to a logging table
-    loop at create-zap_r_appr into data(ls_create_appr).
-      clear: ls_appr_hist.
-
-      move-corresponding ls_create_appr to ls_appr_hist.
-      ls_appr_hist-approval_hist_uuid = zca_cl_abap_utilities=>get_uuid_x16( ).
-
-      append ls_appr_hist to lt_appr_hist.
-    endloop.
-
-    loop at update-zap_r_appr into data(ls_update_appr).
-      clear: ls_appr_hist.
-
-      move-corresponding ls_update_appr to ls_appr_hist.
-      ls_appr_hist-approval_hist_uuid = zca_cl_abap_utilities=>get_uuid_x16( ).
-
-      append ls_appr_hist to lt_appr_hist.
-    endloop.
-
-*Save the changes
-    if lt_appr_hist is not initial.
-      insert zap_a_appr_hist from table @lt_appr_hist.
+*Validate that there is content to process
+    if create-zap_r_appr is initial and
+       update-zap_r_appr is initial and
+       delete-zap_r_appr is initial.
+      return.
     endif.
+
+*Process CREATED modifications
+    loop at create-zap_r_appr into data(ls_created_appr) where %control-Status eq cl_abap_behv=>flag_changed.
+
+      try.
+
+*.register background processing framework (bgPF) process to start the next step
+          if ls_created_appr-status eq zap_if_constants=>system_status-created.
+            zap_cl_bgpf_utilities=>register_operation( is_register_parameters = value #( comm_uuid           = ls_created_appr-parentuuid
+                                                                                         current_step        = zap_if_constants=>step-approval
+                                                                                         current_step_status = ls_created_appr-status ) ).
+          endif.
+
+        catch zfi_cx into data(lr_zfi_cx).
+*            message x204(zap_comm).
+      endtry.
+    endloop.
+
+*Process UPDATED modifications
+    loop at update-zap_r_appr into data(ls_updated_appr) where %control-Status eq cl_abap_behv=>flag_changed.
+
+      try.
+
+*.register background processing framework (bgPF) process to start the next step
+          if ls_updated_appr-status eq zap_if_constants=>system_status-success     or
+             ls_updated_appr-status eq zap_if_constants=>system_status-in_progress or
+             ls_updated_appr-status eq zap_if_constants=>system_status-warning     or
+             ls_updated_appr-status eq zap_if_constants=>system_status-error       or
+             ls_updated_appr-status eq zap_if_constants=>system_status-rejected    or
+             ls_updated_appr-status eq zap_if_constants=>system_status-approved.
+            zap_cl_bgpf_utilities=>register_operation( is_register_parameters = value #( comm_uuid           = ls_updated_appr-parentuuid
+                                                                                         current_step        = zap_if_constants=>step-approval
+                                                                                         current_step_status = ls_updated_appr-status ) ).
+          endif.
+
+        catch zfi_cx into lr_zfi_cx.
+*            message x204(zap_comm).
+      endtry.
+    endloop.
 
   endmethod.
 

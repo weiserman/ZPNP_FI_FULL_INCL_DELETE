@@ -17,7 +17,7 @@ define root view entity ZAP_R_OCR
   key OcrUuid,
       ParentUuid,
       Status,
-      LogId,
+      OcrLogId,
       IntegrationCorrelationId,
       InvoiceReference,
       InvoiceDate,

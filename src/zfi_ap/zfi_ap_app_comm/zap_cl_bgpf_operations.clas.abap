@@ -321,7 +321,44 @@ class zap_cl_bgpf_operations implementation.
 
   endmethod.
   method next_step_appr.
-*  Do some stuff
+
+    data: ld_appr_uuid type sysuuid_x16,
+          lt_appr_create     type table for create zap_r_appr,
+          lt_appr_create_log type table for create zap_r_appr\_Logs.
+
+
+    lt_appr_create = value #( ( %cid       = 'APPR_1'
+                               parentuuid = gs_register_parameters-comm_uuid
+                               %control = value #( parentuuid = if_abap_behv=>mk-on ) ) ).
+
+    lt_appr_create_log = value #( ( %cid_ref   = 'APPR_1'
+                                   %target = value #( ( %cid          = 'APPR_LOG_1'
+                                                        MessageNumber = zap_if_constants=>system_status-created
+                                                        %control = value #( MessageNumber = if_abap_behv=>mk-on ) ) ) ) ).
+
+    modify entities of zap_r_appr
+        entity zap_r_appr
+        create from lt_appr_create
+        entity zap_r_appr
+    create by \_Logs from lt_appr_create_log.
+
+    commit entities response of zap_r_appr
+        failed data(ls_appr_create_failed)
+        reported data(ls_appr_create_reported).
+
+*Check for errors, if found fail the BGPF
+    if ls_appr_create_failed is not initial.
+      loop at ls_appr_create_reported-zap_r_appr into data(ls_appr_reported).
+        message e511(zap) with ls_appr_reported-%msg->if_message~get_text( ) into gd_msg_dummy. "Error Creating Approval: &1.
+        raise exception type cx_bgmc_operation
+          exporting
+            textid         = value #( msgid = sy-msgid
+                                      msgno = sy-msgno
+                                      attr1 = sy-msgv1 )
+            retry_settings = value #( do_retry = abap_false ).
+      endloop.
+    endif.
+
   endmethod.
 
   method next_step_park.

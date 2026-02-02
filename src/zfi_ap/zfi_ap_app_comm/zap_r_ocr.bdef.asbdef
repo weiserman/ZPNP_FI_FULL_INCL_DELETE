@@ -30,7 +30,7 @@ etag master LastChangedAt
       OcrUuid                  = ocr_uuid;
       ParentUuid               = parent_uuid;
       Status                   = status;
-      LogId                    = log_id;
+      OcrLogId                 = ocr_log_id;
       IntegrationCorrelationId = integration_correlation_id;
       InvoiceReference         = invoice_reference;
       InvoiceDate              = invoice_date;

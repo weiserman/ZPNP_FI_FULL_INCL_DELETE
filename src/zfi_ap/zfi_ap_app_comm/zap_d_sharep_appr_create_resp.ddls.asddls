@@ -1,9 +1,9 @@
-@EndUserText.label: 'Sharepoint Approval API'
+@EndUserText.label: 'Sharepoint Approval Create Response'
 define root abstract entity ZAP_D_SHAREP_APPR_CREATE_RESP
 {
-  key approval_uuid    : sysuuid_x16;
-      sharepoint_id    : zap_de_sharep_approval_id;
-      status           : zap_de_sharep_approval_cre_sts;
-      message_number   : zap_de_message_num;
-      detailed_message : zap_de_detailed_message;
+  key ApprovalUuid : sysuuid_x16;
+      SharepointId : zap_de_sharep_approval_id;
+      Status       : zap_de_sharep_appr_resp_sts;
+      MessageCode  : zap_de_message_num;
+      Message      : zap_de_detailed_message;
 }

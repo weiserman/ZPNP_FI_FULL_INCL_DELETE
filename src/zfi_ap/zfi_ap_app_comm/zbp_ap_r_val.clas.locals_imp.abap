@@ -267,11 +267,17 @@ class lhc_zap_i_val_log implementation.
                          ValLogId = ld_ValLogId
                          Status   = ld_hdr_status ) ).
 
-*update COMM_HEADER with progress
+*update COMM_HEADER with progress and vendor data
       lt_comm_update = value #( ( CommUuid          = <ls_val_header>-parentuuid
                                   CurrentStepStatus = ld_hdr_status
                                   CurrentStep       = zap_if_constants=>step-validation
+                                  VendorNumber      = <ls_val_header>-VendorNumber
+                                  PoCcode           = <ls_val_header>-PoCcode
+                                  InvoiceReference  = <ls_val_header>-InvoiceReference
                                   %control = value #( CurrentStepStatus = if_abap_behv=>mk-on
+                                                      VendorNumber      = if_abap_behv=>mk-on
+                                                      PoCcode           = if_abap_behv=>mk-on
+                                                      InvoiceReference  = if_abap_behv=>mk-on
                                                       CurrentStep       = if_abap_behv=>mk-on ) ) ).
       modify entities of zap_r_comm entity zap_r_comm
         update from lt_comm_update

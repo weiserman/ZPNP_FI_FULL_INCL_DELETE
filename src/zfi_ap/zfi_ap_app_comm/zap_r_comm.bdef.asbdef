@@ -72,6 +72,7 @@ with additional save
       EmailReceivedAt          = email_received_at;
       VendorNumber             = vendor_number;
       InvoiceReference         = invoice_reference;
+      PoCcode                  = po_ccode;
       LocalCreatedBy           = local_created_by;
       LocalCreatedAt           = local_created_at;
       LocalLastChangedBy       = local_last_changed_by;

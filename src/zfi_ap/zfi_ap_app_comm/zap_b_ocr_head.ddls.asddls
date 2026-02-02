@@ -14,7 +14,7 @@ define view entity ZAP_B_OCR_HEAD
   key ocr_uuid                   as OcrUuid,
       parent_uuid                as ParentUuid,
       status                     as Status,
-      log_id                     as LogId,
+      ocr_log_id                 as OcrLogId,
       integration_correlation_id as IntegrationCorrelationId,
       invoice_reference          as InvoiceReference,
       invoice_date               as InvoiceDate,

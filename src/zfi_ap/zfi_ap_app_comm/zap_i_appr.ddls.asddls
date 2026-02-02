@@ -15,14 +15,18 @@ define view entity ZAP_I_APPR
       ParentUuid,
       ExternalId,
       Status,
-      SharepointApprovalStatus,
-      SharepointApprovalId,
-      SharepointApproverName,
-      SharepointApproverEmail,
+      SharepointId,
+      ResponseStatus,
+      ResponseMessageNumber,
+      ResponseMessage,
+      ResponseTimestamp,
+      ApproverName,
+      ApproverEmail,
       ApprLogId,
       LocalCreatedBy,
       LocalCreatedAt,
       LocalLastChangedBy,
       LocalLastChangedAt,
       LastChangedAt
+
 }

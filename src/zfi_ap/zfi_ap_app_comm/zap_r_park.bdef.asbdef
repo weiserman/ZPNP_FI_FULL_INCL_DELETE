@@ -13,10 +13,17 @@ etag master LocalLastChangedAt
   delete;
 
   association _Logs { create; }
+  //Actions
 
+ action  CheckStatus result [1] $self;
   //Numbering
   field ( numbering : managed, readonly ) ParkUuid;
 
+  //Side Effects
+  side effects
+  {
+    action CheckStatus affects $self;
+  }
   //Read Only
   field ( readonly ) LocalCreatedBy, LocalCreatedAt, LocalLastChangedBy, LocalLastChangedAt;
 

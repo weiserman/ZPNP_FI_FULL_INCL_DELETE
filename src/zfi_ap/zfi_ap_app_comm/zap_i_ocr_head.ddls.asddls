@@ -14,7 +14,7 @@ define view entity ZAP_I_OCR_HEAD
   key OcrUuid,
       ParentUuid,
       Status,
-      LogId,
+      OcrLogId,
       IntegrationCorrelationId,
       InvoiceReference,
       InvoiceDate,
@@ -38,4 +38,5 @@ define view entity ZAP_I_OCR_HEAD
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
       LocalLastChangedAt,
       LastChangedAt
+      
 }
